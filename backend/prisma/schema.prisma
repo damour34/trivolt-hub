@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum InternshipTrack {
+  networking_internet_tech
+  software_development
+  computer_systems_architecture
+}
+
+model Update {
+  id        Int      @id @default(autoincrement())
+  title     String
+  body      String
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("updates")
+}
+
+model Application {
+  id           Int              @id @default(autoincrement())
+  fullName     String           @map("full_name")
+  email        String
+  phone        String?
+  university   String
+  yearOfStudy  String           @map("year_of_study")
+  track        InternshipTrack
+  motivation   String?
+  createdAt    DateTime         @default(now()) @map("created_at")
+
+  @@map("applications")
+}

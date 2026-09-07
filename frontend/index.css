@@ -1,0 +1,413 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap");
+
+
+/* =========================================================
+   TRIVOLT HUB — GLOBAL STYLES
+   ========================================================= */
+
+:root {
+  /* Colors */
+  --bg: #080a0f;
+  --surface: #0e1219;
+  --surface-light: #11161e;
+
+  --text: #f5f6f8;
+  --text-muted: #9aa3b2;
+  --text-dim: #687180;
+
+  --accent: #f2a93c;
+  --accent-light: #ffc76a;
+
+  --success: #62d89b;
+  --error: #e46d68;
+  --warning: #e6b85c;
+
+  --border: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.15);
+
+
+  /* Fonts */
+  --font-display: "Manrope", sans-serif;
+  --font-body: "DM Sans", sans-serif;
+  --font-mono: "Space Mono", monospace;
+
+
+  /* Layout */
+  --max-width: 1240px;
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+
+body {
+  margin: 0;
+
+  background: var(--bg);
+  color: var(--text);
+
+  font-family: var(--font-body);
+
+  line-height: 1.6;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+/* =========================================================
+   SELECTION
+   ========================================================= */
+
+::selection {
+  background: var(--accent);
+  color: #080a0f;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #292f38;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3a424e;
+}
+
+
+/* =========================================================
+   GLOBAL TYPOGRAPHY
+   ========================================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+
+  font-family: var(--font-display);
+
+  color: var(--text);
+
+  font-weight: 700;
+
+  line-height: 1.1;
+}
+
+
+p {
+  margin-top: 0;
+}
+
+
+a {
+  color: inherit;
+}
+
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+
+/* =========================================================
+   COMMON CONTAINER
+   ========================================================= */
+
+.container {
+  width: min(
+    var(--max-width),
+    calc(100% - 48px)
+  );
+
+  margin: 0 auto;
+}
+
+
+/* =========================================================
+   GLOBAL NAVIGATION
+   ========================================================= */
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+
+nav a {
+  text-decoration: none;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+button {
+  border: none;
+
+  cursor: pointer;
+
+  border-radius: 4px;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+
+button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   FORMS
+   ========================================================= */
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  width: 100%;
+  max-width: 520px;
+}
+
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  color: var(--text-muted);
+
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+
+input,
+select,
+textarea {
+  width: 100%;
+
+  padding: 0.8rem 0.9rem;
+
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+
+  border-radius: 5px;
+
+  color: var(--text);
+
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-dim);
+}
+
+
+input:hover,
+select:hover,
+textarea:hover {
+  border-color: var(--border-strong);
+}
+
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: rgba(242, 169, 60, 0.7);
+
+  background: var(--surface-light);
+
+  box-shadow:
+    0 0 0 3px rgba(242, 169, 60, 0.08);
+}
+
+
+textarea {
+  min-height: 130px;
+
+  resize: vertical;
+}
+
+
+select {
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   FORM BUTTON
+   ========================================================= */
+
+form button {
+  width: fit-content;
+
+  padding: 0.75rem 1.3rem;
+
+  background: var(--accent);
+
+  color: #080a0f;
+
+  font-weight: 700;
+}
+
+
+form button:hover:not(:disabled) {
+  background: var(--accent-light);
+}
+
+
+/* =========================================================
+   STATUS MESSAGES
+   ========================================================= */
+
+.error {
+  color: var(--error);
+
+  font-size: 0.9rem;
+}
+
+
+.success {
+  color: var(--success);
+
+  font-size: 0.9rem;
+}
+
+
+.warning {
+  color: var(--warning);
+
+  font-size: 0.9rem;
+}
+
+
+/* =========================================================
+   UTILITY CLASSES
+   ========================================================= */
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+
+.text-dim {
+  color: var(--text-dim);
+}
+
+
+.text-accent {
+  color: var(--accent);
+}
+
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+
+.display {
+  font-family: var(--font-display);
+}
+
+
+/* =========================================================
+   FOCUS ACCESSIBILITY
+   ========================================================= */
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+
+  outline-offset: 3px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 760px) {
+  .container {
+    width: calc(100% - 32px);
+  }
+}
+
+
+@media (max-width: 480px) {
+  body {
+    font-size: 0.95rem;
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}

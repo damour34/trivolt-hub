@@ -1,0 +1,329 @@
+/* =========================================================
+   TRIVOLT HUB — UPDATES FEED
+   ========================================================= */
+
+.updates-feed {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+
+/* =========================================================
+   UPDATE CARD
+   ========================================================= */
+
+.update-card {
+  position: relative;
+  padding: 1.5rem;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.035),
+      rgba(255, 255, 255, 0.012)
+    ),
+    var(--home-card, #11161e);
+
+  border: 1px solid
+    var(--home-border, rgba(255, 255, 255, 0.09));
+
+  border-radius: 6px;
+
+  overflow: hidden;
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease;
+}
+
+.update-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 2px;
+
+  background: var(--home-accent, #f2a93c);
+
+  transform: scaleX(0);
+  transform-origin: left;
+
+  transition: transform 0.3s ease;
+}
+
+.update-card:hover {
+  transform: translateY(-3px);
+
+  border-color:
+    rgba(242, 169, 60, 0.28);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.045),
+      rgba(255, 255, 255, 0.018)
+    ),
+    var(--home-card, #11161e);
+}
+
+.update-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* =========================================================
+   CARD TOP
+   ========================================================= */
+
+.update-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.update-label {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 0.28rem 0.55rem;
+
+  border: 1px solid
+    rgba(242, 169, 60, 0.22);
+
+  border-radius: 3px;
+
+  color: var(--home-accent, #f2a93c);
+
+  font-family: var(--font-mono, "Space Mono", monospace);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.update-card time {
+  color: var(--home-dim, #687180);
+
+  font-family: var(--font-mono, "Space Mono", monospace);
+  font-size: 0.68rem;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+.update-card h3 {
+  margin: 0 0 0.7rem;
+
+  color: var(--home-text, #f5f6f8);
+
+  font-family: var(--font-display, "Manrope", sans-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.3;
+
+  transition: color 0.2s ease;
+}
+
+.update-card:hover h3 {
+  color: var(--home-accent-light, #ffc76a);
+}
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+.update-card p {
+  margin: 0;
+
+  color: var(--home-muted, #9aa3b2);
+
+  font-family: var(--font-body, "DM Sans", sans-serif);
+  font-size: 0.9rem;
+  line-height: 1.7;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+}
+
+/* =========================================================
+   LOADING STATE
+   ========================================================= */
+
+.updates-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 160px;
+  width: 100%;
+
+  gap: 0.65rem;
+
+  color: var(--home-muted, #9aa3b2);
+
+  font-family: var(--font-mono, "Space Mono", monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+}
+
+.updates-loading-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: var(--home-accent, #f2a93c);
+
+  animation: updatesPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes updatesPulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.8);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* =========================================================
+   ERROR STATE
+   ========================================================= */
+
+.updates-error {
+  width: 100%;
+
+  padding: 1.25rem;
+
+  background: rgba(228, 109, 104, 0.06);
+
+  border: 1px solid
+    rgba(228, 109, 104, 0.18);
+
+  border-radius: 5px;
+}
+
+.updates-error strong {
+  display: block;
+
+  margin-bottom: 0.3rem;
+
+  color: var(--error, #e46d68);
+
+  font-family: var(--font-display, "Manrope", sans-serif);
+  font-size: 0.9rem;
+}
+
+.updates-error p {
+  margin: 0;
+
+  color: var(--home-muted, #9aa3b2);
+
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.updates-empty {
+  width: 100%;
+
+  padding: 2.5rem 1.5rem;
+
+  text-align: center;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.025),
+      rgba(255, 255, 255, 0.008)
+    ),
+    var(--home-card, #11161e);
+
+  border: 1px dashed
+    rgba(255, 255, 255, 0.12);
+
+  border-radius: 6px;
+}
+
+.updates-empty-label {
+  display: inline-block;
+
+  margin-bottom: 0.8rem;
+
+  color: var(--home-accent, #f2a93c);
+
+  font-family: var(--font-mono, "Space Mono", monospace);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.updates-empty h3 {
+  margin: 0 0 0.5rem;
+
+  color: var(--home-text, #f5f6f8);
+
+  font-family: var(--font-display, "Manrope", sans-serif);
+  font-size: 1.1rem;
+}
+
+.updates-empty p {
+  max-width: 430px;
+
+  margin: 0 auto;
+
+  color: var(--home-muted, #9aa3b2);
+
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 800px) {
+  .updates-feed {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .update-card {
+    padding: 1.2rem;
+  }
+
+  .update-card-top {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .update-card h3 {
+    font-size: 1.05rem;
+  }
+
+  .update-card p {
+    font-size: 0.86rem;
+  }
+
+  .updates-empty {
+    padding: 2rem 1.2rem;
+  }
+}
