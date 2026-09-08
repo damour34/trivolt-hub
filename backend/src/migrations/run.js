@@ -6,10 +6,26 @@ import { pool } from "../config/db.js";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 async function run() {
-  const sql = fs.readFileSync(path.join(__dirname, "001_init.sql"), "utf8");
   try {
-    await pool.query(sql);
-    console.log("Migration applied successfully.");
+    const files = fs
+      .readdirSync(__dirname)
+      .filter((file) => file.endsWith(".sql"))
+      .sort();
+
+    for (const file of files) {
+      console.log(`Running migration: ${file}`);
+
+      const sql = fs.readFileSync(
+        path.join(__dirname, file),
+        "utf8"
+      );
+
+      await pool.query(sql);
+
+      console.log(`✓ ${file} applied successfully.`);
+    }
+
+    console.log("All migrations completed.");
   } catch (err) {
     console.error("Migration failed:", err.message);
     process.exitCode = 1;

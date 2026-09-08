@@ -5,11 +5,21 @@ CREATE TABLE IF NOT EXISTS updates (
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
-CREATE TYPE internship_track AS ENUM (
-  'networking_internet_tech',
-  'software_development',
-  'computer_systems_architecture'
-);
+DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1
+    FROM pg_type
+    WHERE typname = 'internship_track'
+  ) THEN
+    CREATE TYPE internship_track AS ENUM (
+      'networking_internet_tech',
+      'software_development',
+      'computer_systems_architecture'
+    );
+  END IF;
+END
+$$;
 
 CREATE TABLE IF NOT EXISTS applications (
   id SERIAL PRIMARY KEY,

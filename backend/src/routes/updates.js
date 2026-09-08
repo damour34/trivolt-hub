@@ -1,11 +1,23 @@
 import { Router } from "express";
-import { listUpdates, createUpdate, deleteUpdate } from "../controllers/updatesController.js";
+import {
+  listUpdates,
+  createUpdate,
+  deleteUpdate,
+} from "../controllers/updatesController.js";
 import { requireAdmin } from "../middleware/auth.js";
+import upload from "../middleware/upload.js";
 
 const router = Router();
 
 router.get("/", listUpdates);
-router.post("/", requireAdmin, createUpdate);
+
+router.post(
+  "/",
+  requireAdmin,
+  upload.array("images", 10),
+  createUpdate
+);
+
 router.delete("/:id", requireAdmin, deleteUpdate);
 
 export default router;
